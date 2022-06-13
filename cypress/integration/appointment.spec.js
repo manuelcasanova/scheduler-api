@@ -1,5 +1,13 @@
 describe("Appointments", () => {
 
+ beforeEach(() => {
+  cy.request("GET", "http://localhost:8001/api/debug/reset");
+
+  cy.visit("/");
+
+  cy.contains("Monday");
+ });
+
   it("should book an interview", () => {
 
 
