@@ -51,7 +51,22 @@ describe("Appointments", () => {
 
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Tori Malcolm");
+  });
 
+  it("should cancel an interview", () => {
+    //Find cancel button and click on it. Disable waiting for actionability
+    cy.get("[alt=Delete]")
+      .first()
+      .click({ force: true })
+
+      cy.contains("Confirm")
+      .first()
+      .click()
+
+      cy.contains("Deleting")
+      cy.contains("Deleting").should("not.exist");
+
+      cy.contains(".appointment__card--show", "Archie Cohen").should("not.exist");
   });
 
 
